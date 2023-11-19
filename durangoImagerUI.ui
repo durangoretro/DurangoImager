@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>DurangoImager</class>
+ <widget class="QMainWindow" name="DurangoImager">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Durango Imager</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QPushButton" name="addFileButton">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>140</y>
+      <width>106</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Add File...</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="RemoveFileButton">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>140</y>
+      <width>106</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Remove File</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="createImageLogo">
+    <property name="geometry">
+     <rect>
+      <x>490</x>
+      <y>390</y>
+      <width>221</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Create Durango Image...</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="CheckSpace">
+    <property name="geometry">
+     <rect>
+      <x>300</x>
+      <y>140</y>
+      <width>261</width>
+      <height>27</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Add Empty Space at the end</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="DurangoLogo">
+    <property name="geometry">
+     <rect>
+      <x>130</x>
+      <y>10</y>
+      <width>531</width>
+      <height>111</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/new/prefix1/DurangoLogo.jpeg&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+   </widget>
+   <widget class="QListWidget" name="romList">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>210</y>
+      <width>371</width>
+      <height>321</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background:white;
+text:black;</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit">
+    <property name="geometry">
+     <rect>
+      <x>440</x>
+      <y>310</y>
+      <width>301</width>
+      <height>28</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="sizeCombo">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>590</x>
+      <y>140</y>
+      <width>96</width>
+      <height>29</height>
+     </rect>
+    </property>
+    <property name="currentText">
+     <string>16KB</string>
+    </property>
+    <item>
+     <property name="text">
+      <string>16KB</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>32KB</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>64KB</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>128KB</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>256KB</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>512KB</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>1MB</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>2MB</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>4MB</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>8MB</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>16MB</string>
+     </property>
+    </item>
+   </widget>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
