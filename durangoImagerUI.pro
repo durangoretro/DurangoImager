@@ -31,7 +31,8 @@ FORMS += \
     durangoImagerUI.ui
 
 DISTFILES += \
-    DurangoLogo.jpeg
+    DurangoLogo.jpeg \
+    README.md
 
 RESOURCES += \
     durangoimagerresources.qrc
