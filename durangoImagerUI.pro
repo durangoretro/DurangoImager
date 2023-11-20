@@ -32,6 +32,7 @@ FORMS += \
 
 DISTFILES += \
     DurangoLogo.jpeg \
+    License.txt \
     README.md
 
 RESOURCES += \
