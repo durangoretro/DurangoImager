@@ -30,11 +30,22 @@ public:
      * @param index Index inside the list.
      */
     void removeRomFile(int index);
+
+    /**
+     * @brief storeDestinationPath Store the destination Path
+     * @param path Destination File Path
+     */
+    void storeDestinationPath(std::string * path);
 private:
     /**
      * @brief RomList Vector Containing all the Roms File in the current session.
      */
     std::vector<DurangoRom*> * RomList;
+
+    /**
+     * @brief destinationFile Store the Destination File Path.
+     */
+    std::string * destinationFile;
 };
 
 #endif // DURANGOIMAGERCONTROLLER_H

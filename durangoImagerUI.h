@@ -44,12 +44,30 @@ private slots:
      * @param state current State @see Qt::CheckState for more information
      */
     void addSpace(int state);
+
+    /**
+     * @brief selectDestinationButtonPressed This slot is used when the destination File (...) button is pressed. This slot Open a "openFile" Dialog.
+     */
+    void selectDestinationButtonPressed();
+
+    /**
+     * @brief storeDestination this Slot is used when a destination File is selected.
+     * @param destinationPath Destination File Path.
+     */
+    void storeDestination(std::string destinationPath);
+
 signals:
     /**
      * @brief itemAdded This signal is emited when a new file is selected from de Open File Dialog.
      * @param fileAdded Rom File Name to be added.
      */
     void itemAdded(std::string fileAdded);
+
+    /**
+     * @brief destinationSelected Signad Emmited when a Destination Is selected.
+     * @param destinationPath Destination Path.
+     */
+    void destinationSelected(std::string destinationPath);
 private:
     /**
      * @brief ui Current UI Setup

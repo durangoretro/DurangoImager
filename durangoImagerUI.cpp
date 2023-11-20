@@ -12,6 +12,8 @@ DurangoImager::DurangoImager(QWidget *parent) :
     connect(ui->addFileButton,SIGNAL(clicked(bool)),this,SLOT(addFileButtonPressed()));
     connect(ui->RemoveFileButton,SIGNAL(clicked(bool)),this, SLOT(removeItem()));
     connect(ui->CheckSpace, SIGNAL(stateChanged(int)),this, SLOT(addSpace(int)));
+    connect(ui->destinationButton, SIGNAL(clicked(bool)),this, SLOT(selectDestinationButtonPressed()));
+    connect(this, SIGNAL(destinationSelected(std::string)),this, SLOT(storeDestination(std::string)));
 }
 
 DurangoImager::~DurangoImager()
@@ -21,16 +23,16 @@ DurangoImager::~DurangoImager()
 }
 
 void DurangoImager::addItem(std::string path){
-    ui->romList->addItem(QString(path.c_str()));
-    controller->addRomFile(new DurangoRom(path,path));
+    std::string fileName= path.substr(path.find_last_of("/")+1);
+    controller->addRomFile(new DurangoRom(path,fileName));
+    ui->romList->addItem(QString(fileName.c_str()));
 }
 
 void DurangoImager::addFileButtonPressed(){
-    QString string = QFileDialog::getOpenFileName(this,QString("Add New ROM"));
+    QString selfilter = tr("Durango Roms (*.dux *.pdx)");
+    QString string = QFileDialog::getOpenFileName(this,QString("Add New ROM"),QString(),selfilter,&selfilter);
     if(!string.isEmpty()){
-        std::string fileName= string.toStdString();
-        fileName= fileName.substr(fileName.find_last_of("/")+1);
-        emit itemAdded(fileName);
+        emit itemAdded(string.toStdString());
     }
 }
 
@@ -41,6 +43,7 @@ void DurangoImager::removeItem(){
         controller->removeRomFile(i->row());
         ui->romList->removeItemWidget(ui->romList->item(i->row()));
     }
+    ui->romList->update();
 
 }
 
@@ -51,4 +54,16 @@ void DurangoImager::addSpace(int state){
     else{
         ui->sizeCombo->setEnabled(false);
     }
+}
+
+void DurangoImager::selectDestinationButtonPressed(){
+    QString string = QFileDialog::getSaveFileName(this,QString("Destination For durango.av"));
+    if(!string.isEmpty()){
+        emit destinationSelected(string.toStdString());
+    }
+}
+
+void DurangoImager::storeDestination(std::string path){
+    controller->storeDestinationPath(&path);
+    ui->DestinationPath->setText(QString(path.c_str()));
 }
