@@ -4,6 +4,9 @@ This Repository Contains the Source Code for the Durango Imager Application.
 This application, allows to create a Durango Image File (.av) from a list of Durango Roms.
 This Image File format is compatible with Durango Roms (.dux) and with the Durango Pocket Roms (.pdx) Rom Format.
 
+![imagen](https://github.com/durangoretro/DurangoImager/assets/6067824/f13b29f6-805c-4363-81ec-0eb61f712bc3)
+
+
 
 This is an Open Source Application and you can see the License information in the _License.txt_ file.
 
