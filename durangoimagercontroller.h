@@ -36,6 +36,10 @@ public:
      * @param path Destination File Path
      */
     void storeDestinationPath(std::string * path);
+    /**
+     * @brief createVolume Create a new Durango Volume File
+     */
+    void createVolume();
 private:
     /**
      * @brief RomList Vector Containing all the Roms File in the current session.

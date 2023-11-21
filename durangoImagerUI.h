@@ -56,6 +56,11 @@ private slots:
      */
     void storeDestination(std::string destinationPath);
 
+    /**
+     * @brief createVolume this slot is used when Create Durango Volume is Pressed.
+     */
+    void createVolume();
+
 signals:
     /**
      * @brief itemAdded This signal is emited when a new file is selected from de Open File Dialog.

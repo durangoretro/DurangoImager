@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
+    <width>746</width>
     <height>600</height>
    </rect>
   </property>
@@ -23,8 +23,8 @@
    <widget class="QPushButton" name="addFileButton">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>140</y>
+      <x>20</x>
+      <y>150</y>
       <width>106</width>
       <height>30</height>
      </rect>
@@ -39,8 +39,8 @@
    <widget class="QPushButton" name="RemoveFileButton">
     <property name="geometry">
      <rect>
-      <x>160</x>
-      <y>140</y>
+      <x>130</x>
+      <y>150</y>
       <width>106</width>
       <height>30</height>
      </rect>
@@ -52,24 +52,24 @@
      <string>Remove File</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="createImageLogo">
+   <widget class="QPushButton" name="createVolumeButton">
     <property name="geometry">
      <rect>
-      <x>490</x>
-      <y>390</y>
+      <x>470</x>
+      <y>380</y>
       <width>221</width>
       <height>30</height>
      </rect>
     </property>
     <property name="text">
-     <string>Create Durango Image...</string>
+     <string>Create Durango Volume...</string>
     </property>
    </widget>
    <widget class="QCheckBox" name="CheckSpace">
     <property name="geometry">
      <rect>
-      <x>300</x>
-      <y>140</y>
+      <x>340</x>
+      <y>150</y>
       <width>261</width>
       <height>27</height>
      </rect>
@@ -81,7 +81,7 @@
    <widget class="QLabel" name="DurangoLogo">
     <property name="geometry">
      <rect>
-      <x>130</x>
+      <x>120</x>
       <y>10</y>
       <width>531</width>
       <height>111</height>
@@ -108,7 +108,7 @@ color: rgb(0, 0, 0);</string>
    <widget class="QLineEdit" name="DestinationPath">
     <property name="geometry">
      <rect>
-      <x>440</x>
+      <x>410</x>
       <y>310</y>
       <width>251</width>
       <height>28</height>
@@ -131,8 +131,8 @@ background-color: rgb(255, 255, 255);</string>
     </property>
     <property name="geometry">
      <rect>
-      <x>590</x>
-      <y>140</y>
+      <x>630</x>
+      <y>150</y>
       <width>96</width>
       <height>29</height>
      </rect>
@@ -199,20 +199,20 @@ background-color: rgb(255, 255, 255);</string>
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>440</x>
+      <x>410</x>
       <y>280</y>
-      <width>161</width>
+      <width>171</width>
       <height>21</height>
      </rect>
     </property>
     <property name="text">
-     <string>Image Destination:</string>
+     <string>Volume Destination:</string>
     </property>
    </widget>
    <widget class="QPushButton" name="destinationButton">
     <property name="geometry">
      <rect>
-      <x>690</x>
+      <x>660</x>
       <y>310</y>
       <width>51</width>
       <height>30</height>
@@ -236,6 +236,19 @@ background-color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
      <string>File List:</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="openVolumeButton">
+    <property name="geometry">
+     <rect>
+      <x>460</x>
+      <y>220</y>
+      <width>231</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Open Existing Volume...</string>
     </property>
    </widget>
   </widget>

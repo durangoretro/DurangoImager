@@ -14,6 +14,7 @@ DurangoImager::DurangoImager(QWidget *parent) :
     connect(ui->CheckSpace, SIGNAL(stateChanged(int)),this, SLOT(addSpace(int)));
     connect(ui->destinationButton, SIGNAL(clicked(bool)),this, SLOT(selectDestinationButtonPressed()));
     connect(this, SIGNAL(destinationSelected(std::string)),this, SLOT(storeDestination(std::string)));
+    connect(ui->createVolumeButton, SIGNAL(clicked(bool)),this,SLOT(createVolume()));
 }
 
 DurangoImager::~DurangoImager()
@@ -66,4 +67,8 @@ void DurangoImager::selectDestinationButtonPressed(){
 void DurangoImager::storeDestination(std::string path){
     controller->storeDestinationPath(&path);
     ui->DestinationPath->setText(QString(path.c_str()));
+}
+
+void DurangoImager::createVolume(){
+    controller->createVolume();
 }
