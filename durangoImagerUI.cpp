@@ -65,7 +65,7 @@ void DurangoImager::selectDestinationButtonPressed(){
 }
 
 void DurangoImager::storeDestination(std::string path){
-    controller->storeDestinationPath(&path);
+    controller->storeDestinationPath(path);
     ui->DestinationPath->setText(QString(path.c_str()));
 }
 

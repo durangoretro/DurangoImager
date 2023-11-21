@@ -4,7 +4,7 @@
 DurangoImagerController::DurangoImagerController()
 {
     this->RomList = new std::vector<DurangoRom*>();
-    this->destinationFile= new std::string();
+    this->destinationFile= "";
 }
 
 void DurangoImagerController::addRomFile(DurangoRom * rom){
@@ -17,22 +17,24 @@ void DurangoImagerController::removeRomFile(int index){
 
 DurangoImagerController::~DurangoImagerController(){
     delete RomList;
-    delete destinationFile;
+
 }
 
-void DurangoImagerController::storeDestinationPath(std::string* path){
+void DurangoImagerController::storeDestinationPath(std::string path){
     this->destinationFile=path;
 }
 
 void DurangoImagerController::createVolume(){
-    std::ofstream * durangoVolume = new std::ofstream(destinationFile->c_str(),std::ofstream::binary);
+    std::ofstream * durangoVolume = new std::ofstream(this->destinationFile.c_str(),std::ofstream::binary);
     for(unsigned int i=0;i<this->RomList->size();i++){
-        std::ifstream * currentFile= new std::ifstream(RomList->data()[i]->getName().c_str(),std::ifstream::binary);
-        char * buffer=new char[1024];
-        while(!currentFile->eof()){
-            currentFile->read(buffer,1024);
-            *durangoVolume<<buffer;
-        }
+
+        std::ifstream * currentFile= new std::ifstream(RomList->data()[i]->getPath().c_str(),std::ifstream::binary);
+        currentFile->seekg(0,currentFile->end);
+        size_t length = currentFile->tellg();
+        currentFile->seekg(0,currentFile->beg);
+        char * buffer=new char[length];
+        currentFile->read(buffer,length);
+        *durangoVolume<<buffer;
         delete[] buffer;
         currentFile->close();
      }

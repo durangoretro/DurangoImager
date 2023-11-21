@@ -35,7 +35,7 @@ public:
      * @brief storeDestinationPath Store the destination Path
      * @param path Destination File Path
      */
-    void storeDestinationPath(std::string * path);
+    void storeDestinationPath(std::string path);
     /**
      * @brief createVolume Create a new Durango Volume File
      */
@@ -49,7 +49,7 @@ private:
     /**
      * @brief destinationFile Store the Destination File Path.
      */
-    std::string * destinationFile;
+    std::string destinationFile;
 };
 
 #endif // DURANGOIMAGERCONTROLLER_H
