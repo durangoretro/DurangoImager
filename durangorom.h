@@ -1,7 +1,11 @@
 #ifndef DURANGOROM_H
 #define DURANGOROM_H
-#include <string>
+/*
+ * SPDX-License-Identifier: LGPL v3.0
+ * Copyright (C) 2023 Durango Computer Team (durangoretro.com)
+ */
 
+#include <string>
 
 /**
  * @brief The DurangoRom class. Contains all the information from a Durango ROM.

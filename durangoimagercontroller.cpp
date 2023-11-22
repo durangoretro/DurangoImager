@@ -1,3 +1,8 @@
+/*
+ * SPDX-License-Identifier: LGPL v3.0
+ * Copyright (C) 2023 Durango Computer Team (durangoretro.com)
+ */
+
 #include "durangoimagercontroller.h"
 #include <fstream>
 
@@ -24,8 +29,16 @@ void DurangoImagerController::storeDestinationPath(std::string path){
     this->destinationFile=path;
 }
 
+bool DurangoImagerController::hastDestination(){
+    return !this->destinationFile.empty();
+}
+
+void DurangoImagerController::setEmptyEndSpace(bool emptySpace){
+    this->addEmptySpace=emptySpace;
+}
+
 void DurangoImagerController::createVolume(){
-    std::ofstream * durangoVolume = new std::ofstream(this->destinationFile.c_str(),std::ofstream::binary);
+    std::ofstream * durangoVolume = new std::ofstream(this->destinationFile.c_str(),std::ofstream::trunc|std::ofstream::binary);
     for(unsigned int i=0;i<this->RomList->size();i++){
 
         std::ifstream * currentFile= new std::ifstream(RomList->data()[i]->getPath().c_str(),std::ifstream::binary);
@@ -34,7 +47,7 @@ void DurangoImagerController::createVolume(){
         currentFile->seekg(0,currentFile->beg);
         char * buffer=new char[length];
         currentFile->read(buffer,length);
-        *durangoVolume<<buffer;
+        durangoVolume->write(buffer,length);
         delete[] buffer;
         currentFile->close();
      }

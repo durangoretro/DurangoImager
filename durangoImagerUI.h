@@ -1,6 +1,11 @@
 #ifndef DURANGOIMAGERUI_H
 #define DURANGOIMAGERUI_H
 
+/*
+ * SPDX-License-Identifier: LGPL v3.0
+ * Copyright (C) 2023 Durango Computer Team (durangoretro.com)
+ */
+
 #include "durangoimagercontroller.h"
 #include <QMainWindow>
 /**
@@ -60,6 +65,7 @@ private slots:
      * @brief createVolume this slot is used when Create Durango Volume is Pressed.
      */
     void createVolume();
+
 
 signals:
     /**

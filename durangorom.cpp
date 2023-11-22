@@ -1,3 +1,7 @@
+/*
+ * SPDX-License-Identifier: LGPL v3.0
+ * Copyright (C) 2023 Durango Computer Team (durangoretro.com)
+ */
 #include "durangorom.h"
 
 DurangoRom::DurangoRom()

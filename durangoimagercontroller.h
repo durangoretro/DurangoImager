@@ -1,6 +1,12 @@
 #ifndef DURANGOIMAGERCONTROLLER_H
 #define DURANGOIMAGERCONTROLLER_H
 
+
+/*
+ * SPDX-License-Identifier: LGPL v3.0
+ * Copyright (C) 2023 Durango Computer Team (durangoretro.com)
+ */
+
 #include "durangorom.h"
 #include <vector>
 
@@ -40,6 +46,14 @@ public:
      * @brief createVolume Create a new Durango Volume File
      */
     void createVolume();
+
+    /**
+     * @brief hastDestination Checks if a destination File is selected
+     * @return True if the destination File is selected.
+     */
+    bool hastDestination();
+
+    void setEmptyEndSpace(bool addEmptySpace);
 private:
     /**
      * @brief RomList Vector Containing all the Roms File in the current session.
@@ -50,6 +64,13 @@ private:
      * @brief destinationFile Store the Destination File Path.
      */
     std::string destinationFile;
+
+    /**
+     * @brief addEmptySpace Check if need to add EmptySpace at The end of the Volume.
+     */
+    bool addEmptySpace;
+
+
 };
 
 #endif // DURANGOIMAGERCONTROLLER_H

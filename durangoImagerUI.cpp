@@ -1,6 +1,12 @@
+/*
+ * SPDX-License-Identifier: LGPL v3.0
+ * Copyright (C) 2023 Durango Computer Team (durangoretro.com)
+ */
+
 #include "durangoImagerUI.h"
 #include "ui_durangoImagerUI.h"
 #include <QFileDialog>
+#include <QMessageBox>
 
 DurangoImager::DurangoImager(QWidget *parent) :
     QMainWindow(parent),
@@ -51,9 +57,11 @@ void DurangoImager::removeItem(){
 void DurangoImager::addSpace(int state){
     if(state== Qt::CheckState::Checked){
         ui->sizeCombo->setEnabled(true);
+        controller->setEmptyEndSpace(true);
     }
     else{
         ui->sizeCombo->setEnabled(false);
+        controller->setEmptyEndSpace(false);
     }
 }
 
@@ -70,5 +78,11 @@ void DurangoImager::storeDestination(std::string path){
 }
 
 void DurangoImager::createVolume(){
-    controller->createVolume();
+    if(controller->hastDestination()){
+        controller->createVolume();
+        QMessageBox::information(this,QString("Operation Sucessfull"),QString("Durango Volume Created Succesffully"));
+    }else{
+        QMessageBox::warning(this,QString("Destination File Required"),QString("Please; select a Destination File"));
+    }
+
 }
