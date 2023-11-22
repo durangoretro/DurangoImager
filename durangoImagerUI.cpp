@@ -30,8 +30,7 @@ DurangoImager::~DurangoImager()
 }
 
 void DurangoImager::addItem(std::string path){
-    std::string fileName= path.substr(path.find_last_of("/")+1);
-    controller->addRomFile(new DurangoRom(path,fileName));
+    std::string fileName=controller->addRomFile(path);
     ui->romList->addItem(QString(fileName.c_str()));
 }
 

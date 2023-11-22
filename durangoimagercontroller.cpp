@@ -4,6 +4,7 @@
  */
 
 #include "durangoimagercontroller.h"
+#include "durangorom.h"
 #include <fstream>
 
 DurangoImagerController::DurangoImagerController()
@@ -12,8 +13,10 @@ DurangoImagerController::DurangoImagerController()
     this->destinationFile= "";
 }
 
-void DurangoImagerController::addRomFile(DurangoRom * rom){
-    this->RomList->push_back(rom);
+std::string DurangoImagerController::addRomFile(std::string path){
+    DurangoRom * durangoROM= DurangoRom::readDurangoROMFile(path);
+    this->RomList->push_back(durangoROM);
+    return durangoROM->getName();
 }
 
 void DurangoImagerController::removeRomFile(int index){

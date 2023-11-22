@@ -28,4 +28,20 @@ std::string DurangoRom::getName(){
 std::string DurangoRom::getPath(){
     return this->path;
 }
+DurangoHeader DurangoRom::getHeader(){
+    return this->header;
+}
+
+void DurangoRom::setHeader(DurangoHeader header){
+    this->header=header;
+}
+
+DurangoRom * DurangoRom::readDurangoROMFile(std::string path){
+
+    std::string fileName= path.substr(path.find_last_of("/")+1);
+    DurangoHeader* header = DurangoHeader::ReadDurangoHeader(path);
+    DurangoRom* rom =  new DurangoRom(path,fileName);
+    rom->setHeader(*header);
+    return rom;
+}
 

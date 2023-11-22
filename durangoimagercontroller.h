@@ -30,7 +30,7 @@ public:
      * @brief addRomFile add a New Rom File to the current Session.
      * @param rom Durango Rom Information
      */
-    void addRomFile(DurangoRom * rom);
+    std::string addRomFile(std::string path);
     /**
      * @brief removeRomFile Remove an existing Rom from the current session.
      * @param index Index inside the list.

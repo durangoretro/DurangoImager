@@ -1,5 +1,7 @@
 #ifndef DURANGOROM_H
 #define DURANGOROM_H
+
+#include"durangoheader.h"
 /*
  * SPDX-License-Identifier: LGPL v3.0
  * Copyright (C) 2023 Durango Computer Team (durangoretro.com)
@@ -45,6 +47,25 @@ public:
      * @param name Current Name
      */
     void setName(std::string name);
+
+    /**
+     * @brief getHeader get Header Info
+     * @return Header Info
+     */
+    DurangoHeader getHeader();
+
+    /**
+     * @brief setHeader Set header Info
+     * @param header Header Info
+     */
+    void setHeader(DurangoHeader header);
+
+    /**
+     * @brief readDurangoROMFile Read an existing Durango ROM FIle
+     * @param path Durango ROm File Path
+     * @return Pointer to a new DurangoRom Object with all the information
+     */
+    static DurangoRom * readDurangoROMFile(std::string path);
 private:
     /**
      * @brief path Rom File Path
@@ -54,6 +75,10 @@ private:
      * @brief name Rom Name
      */
     std::string name;
+    /**
+     * @brief header DurangoHeader
+     */
+    DurangoHeader header;
 
 };
 
