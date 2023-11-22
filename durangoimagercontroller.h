@@ -53,7 +53,17 @@ public:
      */
     bool hastDestination();
 
+    /**
+     * @brief setEmptyEndSpace if set to true an empty space will be added at the end of the file.
+     * @param addEmptySpace True for add EmptySpace False otherwise.
+     */
     void setEmptyEndSpace(bool addEmptySpace);
+
+    /**
+     * @brief setEmptySpaceSize Set the emptyspace Size in Bytes
+     * @param emptySpaceSize EmptySpace size in Bytes
+     */
+    void setEmptySpaceSize(long emptySpaceSize);
 private:
     /**
      * @brief RomList Vector Containing all the Roms File in the current session.
@@ -69,6 +79,11 @@ private:
      * @brief addEmptySpace Check if need to add EmptySpace at The end of the Volume.
      */
     bool addEmptySpace;
+
+    /**
+     * @brief emptyspace Number of bytes for the empty space.
+     */
+    long emptyspace;
 
 
 };

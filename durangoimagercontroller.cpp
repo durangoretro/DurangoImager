@@ -40,6 +40,9 @@ void DurangoImagerController::setEmptyEndSpace(bool emptySpace){
     this->addEmptySpace=emptySpace;
 }
 
+void DurangoImagerController::setEmptySpaceSize(long emptySpaceSize){
+    this->emptyspace=emptySpaceSize;
+}
 void DurangoImagerController::createVolume(){
     std::ofstream * durangoVolume = new std::ofstream(this->destinationFile.c_str(),std::ofstream::trunc|std::ofstream::binary);
     for(unsigned int i=0;i<this->RomList->size();i++){

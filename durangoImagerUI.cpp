@@ -8,6 +8,12 @@
 #include <QFileDialog>
 #include <QMessageBox>
 
+long emptySpaceSizes[11]={
+    16384,32768,65536,131072,
+    262144,524288,1048576,2097152,
+    4194304,8388608,16777216
+};
+
 DurangoImager::DurangoImager(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::DurangoImager)
@@ -21,6 +27,7 @@ DurangoImager::DurangoImager(QWidget *parent) :
     connect(ui->destinationButton, SIGNAL(clicked(bool)),this, SLOT(selectDestinationButtonPressed()));
     connect(this, SIGNAL(destinationSelected(std::string)),this, SLOT(storeDestination(std::string)));
     connect(ui->createVolumeButton, SIGNAL(clicked(bool)),this,SLOT(createVolume()));
+    connect(ui->sizeCombo,SIGNAL(currentIndexChanged(int)),this, SLOT(emptySpaceChanged(int)));
 }
 
 DurangoImager::~DurangoImager()
@@ -75,6 +82,11 @@ void DurangoImager::storeDestination(std::string path){
     controller->storeDestinationPath(path);
     ui->DestinationPath->setText(QString(path.c_str()));
 }
+
+void DurangoImager::emptySpaceChanged(int index){
+    controller->setEmptySpaceSize(emptySpaceSizes[index]);
+}
+
 
 void DurangoImager::createVolume(){
     if(controller->hastDestination()){

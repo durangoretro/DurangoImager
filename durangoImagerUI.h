@@ -66,6 +66,12 @@ private slots:
      */
     void createVolume();
 
+    /**
+     * @brief emptySpaceChanged Slot is used when the ComboBox with the Empty Space Size is changed
+     * @param index element index selected
+     */
+    void emptySpaceChanged(int index);
+
 
 signals:
     /**
