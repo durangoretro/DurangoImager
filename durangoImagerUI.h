@@ -72,6 +72,9 @@ private slots:
      */
     void emptySpaceChanged(int index);
 
+    void openVolumePressed();
+    void openExistingVolume(std::string volumePath);
+
 
 signals:
     /**
@@ -85,6 +88,8 @@ signals:
      * @param destinationPath Destination Path.
      */
     void destinationSelected(std::string destinationPath);
+
+    void volumeSelected(std::string volumePath);
 private:
     /**
      * @brief ui Current UI Setup

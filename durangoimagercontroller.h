@@ -11,6 +11,14 @@
 #include <vector>
 
 /**
+ * Empty Space Struct store empty space to be added to a Volume
+ */
+typedef struct{
+    char * emptySpaceContent;
+    size_t emptySpaceSize;
+}emptySpaceStruct;
+
+/**
  * @brief Durango Imager Controller Class. Contains the Business Logic of the application.
  * @author Durango Computer Team (Victor Suarez).
  * @version 1.0 (Nov 2023).
@@ -64,6 +72,13 @@ public:
      * @param emptySpaceSize EmptySpace size in Bytes
      */
     void setEmptySpaceSize(long emptySpaceSize);
+
+    /**
+     * @brief openExistingVolume Open and store the information of an existing volume
+     * @param path Durango Volume Size path
+     * @return Rom Name List
+     */
+    std::vector<std::string> openExistingVolume(std::string path);
 private:
     /**
      * @brief RomList Vector Containing all the Roms File in the current session.
@@ -85,6 +100,12 @@ private:
      */
     long emptyspace;
 
+    /**
+     * @brief createEmptySpace Create a new EmptySpaceStruct
+     * @param emptySpaceSize emptySpace size in Bytes
+     * @return emptySpaceStruct with the content and size
+     */
+    emptySpaceStruct createEmptySpace(size_t emptySpaceSize);
 
 };
 

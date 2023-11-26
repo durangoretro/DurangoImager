@@ -28,6 +28,8 @@ DurangoImager::DurangoImager(QWidget *parent) :
     connect(this, SIGNAL(destinationSelected(std::string)),this, SLOT(storeDestination(std::string)));
     connect(ui->createVolumeButton, SIGNAL(clicked(bool)),this,SLOT(createVolume()));
     connect(ui->sizeCombo,SIGNAL(currentIndexChanged(int)),this, SLOT(emptySpaceChanged(int)));
+    connect(ui->openVolumeButton, SIGNAL(clicked(bool)), this, SLOT(openVolumePressed()));
+    connect(this,SIGNAL(volumeSelected(std::string)),this,SLOT(openExistingVolume(std::string)));
 }
 
 DurangoImager::~DurangoImager()
@@ -54,7 +56,8 @@ void DurangoImager::removeItem(){
     QModelIndexList::iterator i;
     for(i=list.begin();i!=list.end();i++){
         controller->removeRomFile(i->row());
-        ui->romList->removeItemWidget(ui->romList->item(i->row()));
+        QListWidgetItem* item =ui->romList->takeItem(i->row());
+        delete item;
     }
     ui->romList->update();
 
@@ -72,7 +75,8 @@ void DurangoImager::addSpace(int state){
 }
 
 void DurangoImager::selectDestinationButtonPressed(){
-    QString string = QFileDialog::getSaveFileName(this,QString("Destination For durango.av"));
+    QString selfilter = tr("Durango Volume File (durango.av)");
+    QString string = QFileDialog::getSaveFileName(this,QString("Destination For durango.av"),QString(),selfilter,&selfilter);
     if(!string.isEmpty()){
         emit destinationSelected(string.toStdString());
     }
@@ -96,4 +100,16 @@ void DurangoImager::createVolume(){
         QMessageBox::warning(this,QString("Destination File Required"),QString("Please; select a Destination File"));
     }
 
+}
+
+void DurangoImager::openVolumePressed(){
+    QString selfilter = tr("Durango Volume File (durango.av)");
+    QString string = QFileDialog::getOpenFileName(this,QString("Destination For durango.av"),QString(),selfilter,&selfilter);
+    if(!string.isEmpty()){
+        emit volumeSelected(string.toStdString());
+    }
+}
+
+void DurangoImager::openExistingVolume(std::string path){
+    controller->openExistingVolume(path);
 }

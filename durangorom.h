@@ -9,6 +9,7 @@
 
 #include <string>
 
+
 /**
  * @brief The DurangoRom class. Contains all the information from a Durango ROM.
  * @author Durango Computer Team (Victor Suarez)
@@ -17,26 +18,7 @@
 class DurangoRom
 {
 public:
-    /**
-     * @brief DurangoRom Default Constructor. Store all the information with an Empty String
-     */
-    DurangoRom();
-    /**
-     * @brief DurangoRom Class Constructor
-     * @param path Durango Rom Path
-     * @param name Durango Rom Name.
-     */
-    DurangoRom(std::string path, std::string name);
-    /**
-     * @brief getPath Get the current Path
-     * @return current Path
-     */
-    std::string getPath();
-    /**
-     * @brief setPath Set the current Path
-     * @param path Current Path
-     */
-    void setPath(std::string path);
+
     /**
      * @brief getName Get The current Name
      * @return Current name
@@ -61,20 +43,47 @@ public:
     void setHeader(DurangoHeader header);
 
     /**
-     * @brief readDurangoROMFile Read an existing Durango ROM FIle
+     * @brief getRomSize Get Current Rom Size
+     * @return Rom Size in Bytes
+     */
+    size_t getRomSize();
+
+    /**
+     * @brief getRomContent Get the current Rom Content
+     * @return Char Array Pointer to the Rom COntent (check RomSize for array length).
+     */
+    char * getRomContent();
+
+
+    /**
+     * @brief readDurangoROMFile Read an existing Durango ROM FIle from a File path
      * @param path Durango ROm File Path
      * @return Pointer to a new DurangoRom Object with all the information
      */
     static DurangoRom * readDurangoROMFile(std::string path);
-private:
+
     /**
-     * @brief path Rom File Path
+     * @brief readDurangoROMFile Read an existing Durango Rom File Information from the content
+     * @param romContent Durango Rom Content (including header)
+     * @param romSize Durango Rom File Size in Bytes
+     * @return Pointer to a new DurangoRom Object
      */
-    std::string path;
+    static DurangoRom* readDurangoROMFile(char * romContent, size_t romSize);
+private:
     /**
      * @brief name Rom Name
      */
     std::string name;
+
+    /**
+     * @brief romContent Rom Content
+     */
+    char * romContent;
+
+    /**
+     * @brief romSize Rom size in Bytes
+     */
+    size_t romSize;
     /**
      * @brief header DurangoHeader
      */

@@ -112,6 +112,12 @@ public:
      * @return DurangoHeader Object
      */
     static DurangoHeader * ReadDurangoHeader(std::string path);
+    /**
+     * @brief readDurangoHeader read a Rom File from the headerINfo Content and create a new Durango Header Object
+     * @param headerinfo 256 Bytes char array with the header Info
+     * @return DurangoHeaderObject
+     */
+    static DurangoHeader * readDurangoHeader(char* headerinfo);
 
 private:
     /**
