@@ -111,5 +111,10 @@ void DurangoImager::openVolumePressed(){
 }
 
 void DurangoImager::openExistingVolume(std::string path){
-    controller->openExistingVolume(path);
+    std::vector<std::string> romNames=controller->openExistingVolume(path);
+    ui->romList->clear();
+    for(size_t i =0;i<romNames.size();i++){
+        ui->romList->addItem(QString(romNames.data()[i].c_str()));
+    }
+    storeDestination(path);
 }

@@ -23,14 +23,19 @@ DurangoHeader* DurangoHeader::readDurangoHeader(char * headerInfo){
     char signature[3]={headerInfo[1],headerInfo[2],'\0'};
     durangoHeaderInformation.signature=readSignature(signature);
     //Read ROM Name
-    char romName[30];
-    int currentChar=0;
     int i = 8;
-    for(;headerInfo[i]!='\0';i++){
-        romName[currentChar]=headerInfo[i];
-        currentChar++;
+    int currentChar=0;
+    if(durangoHeaderInformation.signature==DurangoSignature::DL){
+        strncpy(durangoHeaderInformation.filename,"FreeSpace",currentChar+9);
+        currentChar+=9;
+    }else{
+        char romName[30];
+        for(;headerInfo[i]!='\0';i++){
+            romName[currentChar]=headerInfo[i];
+            currentChar++;
+        }
+        strncpy(durangoHeaderInformation.filename,romName,currentChar+1);
     }
-    strncpy(durangoHeaderInformation.filename,romName,currentChar+1);
     i++;//next character
     //Read Comment
     char comment[220];

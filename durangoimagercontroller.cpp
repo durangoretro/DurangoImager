@@ -24,7 +24,7 @@ std::string DurangoImagerController::addRomFile(std::string path){
 }
 
 void DurangoImagerController::removeRomFile(int index){
-    this->RomList->erase(this->RomList->begin()+index);
+    this->RomList->erase(std::next(this->RomList->begin(),index));
 }
 
 DurangoImagerController::~DurangoImagerController(){
@@ -83,15 +83,36 @@ std::vector<std::string> DurangoImagerController::openExistingVolume(std::string
     volumeFile->read(volumeContent,volumeSize);
     volumeFile->close();
     //get Each Rom
-    std::vector<long> romPositions;
-    while(long romPos=strstr(volumeContent,"dX")!=NULL){
-        romPositions.push_back(romPos-1);
+    std::vector<unsigned long> romPositions;
+    std::vector<std::string> romNames;
+    for(unsigned long i=0;i<volumeSize-1;i++){
+        //if found a Durango Executable
+        if(volumeContent[i]=='d' && volumeContent[i+1]=='X'){
+            romPositions.push_back(i-1);
+        }
+        //Empty Space
+        if(volumeContent[i]=='d' && volumeContent[i+1]=='L'){
+            romPositions.push_back(i-1);
+        }
+        //TODO: Other File Types
     }
-
+    romPositions.push_back(volumeSize);
+    for(size_t i=0;i<romPositions.size()-1;i++){
+        unsigned long initrompos = romPositions.data()[i];
+        unsigned long endrompos = romPositions.data()[i+1]-1;
+        unsigned long romSize = endrompos-initrompos;
+        char * romContent = new char[romSize];
+        memcpy(romContent,volumeContent+initrompos,romSize);
+        //Read and create Rom
+        DurangoRom * rom = DurangoRom::readDurangoROMFile(romContent,romSize);
+        RomList->push_back(rom);
+        romNames.push_back(rom->getName());
+    }
+    return romNames;
 }
 
 void DurangoImagerController::createVolume(){
-    std::ofstream * durangoVolume = new std::ofstream(this->destinationFile.c_str(),std::ofstream::trunc|std::ofstream::binary);
+    std::ofstream * durangoVolume = new std::ofstream(this->destinationFile.c_str(),std::ios::binary|std::ios::trunc);
     for(unsigned int i=0;i<this->RomList->size();i++){
 
         DurangoRom * currentRom = this->RomList->data()[i];
