@@ -112,6 +112,7 @@ std::vector<std::string> DurangoImagerController::openExistingVolume(std::string
 }
 
 void DurangoImagerController::createVolume(){
+
     std::ofstream * durangoVolume = new std::ofstream(this->destinationFile.c_str(),std::ios::binary|std::ios::trunc);
     for(unsigned int i=0;i<this->RomList->size();i++){
 
