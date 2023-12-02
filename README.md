@@ -1,5 +1,8 @@
 # Durango Imager
 
+[![.github/workflows/main.yml](https://github.com/durangoretro/DurangoImager/actions/workflows/main.yml/badge.svg)](https://github.com/durangoretro/DurangoImager/actions/workflows/main.yml)
+
+
 This Repository Contains the Source Code for the Durango Imager Application.
 This application, allows to create a Durango Volume File (.av) from a list of Durango Roms.
 This Volume File format is compatible with Durango Roms (.dux) and with the Durango Pocket Roms (.px) Rom Format.
