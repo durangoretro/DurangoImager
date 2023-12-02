@@ -1,0 +1,15 @@
+on:
+  push:
+    branches:
+    - master
+jobs:
+  generateAppImage:
+    name: Generate App Image
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build Docker Image
+        run: docker build -t durangimagerbuilder .
+      - name: Build and generate App Image
+        run: docker run -v $PWD:/src/qt6 durangimagerbuilder
+    
