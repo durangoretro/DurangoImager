@@ -21,10 +21,13 @@ DurangoHeader* DurangoHeader::readDurangoHeader(char * headerInfo){
     durangoHeaderInfo durangoHeaderInformation;
     //Signature
     char signature[3]={headerInfo[1],headerInfo[2],'\0'};
+    fprintf(stderr,"Signature...%s\n",signature);
     durangoHeaderInformation.signature=readSignature(signature);
     //Read ROM Name
     int i = 8;
     int currentChar=0;
+    fprintf(stderr,"Reading Rom Name...\n");
+    //Read Free Space
     if(durangoHeaderInformation.signature==DurangoSignature::DL){
         strncpy(durangoHeaderInformation.filename,"FreeSpace",currentChar+9);
         currentChar+=9;
@@ -35,6 +38,8 @@ DurangoHeader* DurangoHeader::readDurangoHeader(char * headerInfo){
             currentChar++;
         }
         strncpy(durangoHeaderInformation.filename,romName,currentChar+1);
+        fprintf(stderr,"Readed Rom Name...%s\n",romName);
+
     }
     i++;//next character
     //Read Comment
@@ -45,6 +50,7 @@ DurangoHeader* DurangoHeader::readDurangoHeader(char * headerInfo){
         currentChar++;
     }
     strncpy(durangoHeaderInformation.comment,comment,currentChar+1);
+    fprintf(stderr,"Readed Rom Comment...%s\n",comment);
     //Step to user Field 1
     i=230;
     char userField1[8];
@@ -53,16 +59,18 @@ DurangoHeader* DurangoHeader::readDurangoHeader(char * headerInfo){
         userField1[currentChar]=headerInfo[i];
         currentChar++;
     }
-    strncpy(durangoHeaderInformation.userField1,userField1,currentChar+1);
-    i++;//Next Char
-    char userField2[8];
-    //user Field 2
+    fprintf(stderr,"Readed User Field 1...%s\n",userField1);
+    strncpy(durangoHeaderInformation.userField1,userField1,8);
     currentChar=0;
+    char userField2[8];
     for(;i<247;i++){
         userField2[currentChar]=headerInfo[i];
         currentChar++;
     }
-    strncpy(durangoHeaderInformation.userField2,userField2,currentChar+1);
+    fprintf(stderr,"Readed User Field 2...%s\n",userField2);
+    strncpy(durangoHeaderInformation.userField2,userField2,8);
+    fprintf(stderr,"Finish Read User Fields\n");
+
     //Read Version
     int version = ((int)headerInfo[247]<<16)| ((int)headerInfo[248]<<8) | headerInfo[249];
     //Read date

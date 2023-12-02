@@ -18,6 +18,7 @@ DurangoImagerController::DurangoImagerController()
 }
 
 std::string DurangoImagerController::addRomFile(std::string path){
+    fprintf(stderr,"Adding Path %s\n", path.c_str());
     DurangoRom * durangoROM= DurangoRom::readDurangoROMFile(path);
     this->RomList->push_back(durangoROM);
     return durangoROM->getName();
@@ -49,6 +50,7 @@ void DurangoImagerController::setEmptySpaceSize(long emptySpaceSize){
 }
 
 emptySpaceStruct DurangoImagerController::createEmptySpace(size_t emptySpaceSize){
+    fprintf(stderr,"Creating Empty Space...Size: %lu\n",emptySpaceSize);
     emptySpaceStruct space;
     char* emptySpaceContent=new char[emptySpaceSize];
     char header[256];
@@ -75,12 +77,14 @@ emptySpaceStruct DurangoImagerController::createEmptySpace(size_t emptySpaceSize
 
 std::vector<std::string> DurangoImagerController::openExistingVolume(std::string path){
     //Read Volume File
+    fprintf(stderr,"Reading Volume File...%s\n",path.c_str());
     std::ifstream * volumeFile = new std::ifstream(path.c_str(),std::ios::binary);
     volumeFile->seekg(0,volumeFile->end);
     size_t volumeSize = volumeFile->tellg();
     volumeFile->seekg(0,volumeFile->beg);
     char * volumeContent = new char[volumeSize];
     volumeFile->read(volumeContent,volumeSize);
+    fprintf(stderr,"Readed Volume File...%s\n",path.c_str());
     volumeFile->close();
     //get Each Rom
     std::vector<unsigned long> romPositions;
@@ -113,6 +117,7 @@ std::vector<std::string> DurangoImagerController::openExistingVolume(std::string
 
 void DurangoImagerController::createVolume(){
 
+    fprintf(stderr,"Creaing Volume File...%s\n",this->destinationFile.c_str());
     std::ofstream * durangoVolume = new std::ofstream(this->destinationFile.c_str(),std::ios::binary|std::ios::trunc);
     for(unsigned int i=0;i<this->RomList->size();i++){
 

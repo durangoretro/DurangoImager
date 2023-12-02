@@ -39,3 +39,6 @@ DISTFILES += \
 
 RESOURCES += \
     durangoimagerresources.qrc
+
+
+Release:DESTDIR = release

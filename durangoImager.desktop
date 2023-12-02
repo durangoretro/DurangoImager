@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Durango Imager
+Comment=Durango Volume File Management Application
+Exec=durangoImager
+Icon=duragonicon
+Categories=Office;
+X-AppImage-Version=9a8e7fc

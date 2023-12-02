@@ -18,8 +18,12 @@ DurangoImager::DurangoImager(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::DurangoImager)
 {
+
     controller = new DurangoImagerController();
     ui->setupUi(this);
+    //Set fixed size
+    this->setFixedSize(this->geometry().width(),this->geometry().height());
+    this->setWindowTitle(QString((std::string("Durango Imager v")+std::string(_VERSION_)).c_str()));
     connect(this,SIGNAL(itemAdded(std::string)),this,SLOT(addItem(std::string)));
     connect(ui->addFileButton,SIGNAL(clicked(bool)),this,SLOT(addFileButtonPressed()));
     connect(ui->RemoveFileButton,SIGNAL(clicked(bool)),this, SLOT(removeItem()));
@@ -30,6 +34,7 @@ DurangoImager::DurangoImager(QWidget *parent) :
     connect(ui->sizeCombo,SIGNAL(currentIndexChanged(int)),this, SLOT(emptySpaceChanged(int)));
     connect(ui->openVolumeButton, SIGNAL(clicked(bool)), this, SLOT(openVolumePressed()));
     connect(this,SIGNAL(volumeSelected(std::string)),this,SLOT(openExistingVolume(std::string)));
+    fprintf(stderr,"Initiated Durango Imager Application v%s\n",_VERSION_);
 }
 
 DurangoImager::~DurangoImager()
@@ -47,6 +52,7 @@ void DurangoImager::addFileButtonPressed(){
     QString selfilter = tr("Durango Roms (*.dux *.pdx)");
     QString string = QFileDialog::getOpenFileName(this,QString("Add New ROM"),QString(),selfilter,&selfilter);
     if(!string.isEmpty()){
+        fprintf(stderr,"Selected File: %s\n", string.toStdString().c_str());
         emit itemAdded(string.toStdString());
     }
 }

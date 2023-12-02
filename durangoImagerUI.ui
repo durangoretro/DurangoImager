@@ -19,6 +19,13 @@
   <property name="windowTitle">
    <string>Durango Imager</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="durangoimagerresources.qrc">
+    <normaloff>:/new/prefix1/duragonicon.png</normaloff>:/new/prefix1/duragonicon.png</iconset>
+  </property>
+  <property name="statusTip">
+   <string/>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QPushButton" name="addFileButton">
     <property name="geometry">
@@ -266,6 +273,8 @@ background-color: rgb(255, 255, 255);</string>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
- <resources/>
+ <resources>
+  <include location="durangoimagerresources.qrc"/>
+ </resources>
  <connections/>
 </ui>

@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/new/prefix1">
         <file>DurangoLogo.jpeg</file>
+        <file>duragonicon.png</file>
     </qresource>
 </RCC>

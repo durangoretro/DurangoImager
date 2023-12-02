@@ -8,6 +8,8 @@
 
 #include "durangoimagercontroller.h"
 #include <QMainWindow>
+
+#define _VERSION_ "1.0b"
 /**
  * NameSpace for use with the UI Interface.
  */
