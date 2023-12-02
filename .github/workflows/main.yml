@@ -11,5 +11,5 @@ jobs:
       - name: Build Docker Image
         run: docker build -t durangimagerbuilder .
       - name: Build and generate App Image
-        run: docker run --user root -v $PWD:/src/qt6 durangimagerbuilder
+        run: docker run --privileged --user root -v $PWD:/src/qt6 durangimagerbuilder
     
