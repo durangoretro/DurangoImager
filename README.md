@@ -22,3 +22,13 @@ This application allows to:
 * Open an Existing Durango Volume File and see the Roms files.
 
 **NOTE**: To use the Durango Volume File you will need the last version of the Nanoboot ROM; and store in a Durango Development Cartidge, or use with the New Durango Pocket.
+
+## Instalation
+
+To use and install this application, you can download the AppImage from the [Release](https://github.com/durangoretro/DurangoImager/releases/) page; later, you can execute the AppImage.
+
+Remember to set the properly permissions after download.
+
+```bash
+chmod +x Durango-Imager-x86_64.appImage
+```
