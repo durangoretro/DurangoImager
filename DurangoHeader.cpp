@@ -3,12 +3,37 @@
 #include <fstream>
 
 
-
-
 /*
  * SPDX-License-Identifier: LGPL v3.0
  * Copyright (C) 2023 Durango Computer Team (durangoretro.com)
  */
+
+//Siganture to String Convertion Table
+char signatureStrValues[9][11]{
+    "dX",
+    "dA",
+    "pX",
+    "dL",
+    "dS",
+    "dR",
+    "ds",
+    "dr",
+    "INVALID"
+};
+
+//String to Signature Enum Convertion table
+DurangoSignature strSignaturesValues[9]={
+    DurangoSignature::DX,
+    DurangoSignature::DA,
+    DurangoSignature::PX,
+    DurangoSignature::DL,
+    DurangoSignature::DS,
+    DurangoSignature::DR,
+    DurangoSignature::Ds,
+    DurangoSignature::Dr,
+    DurangoSignature::INVALID
+};
+
 
 DurangoSignature readSignature(char*);
 
@@ -106,29 +131,10 @@ DurangoHeader * DurangoHeader::ReadDurangoHeader(std::string path){
 
 DurangoSignature readSignature(char* signature){
 
-    if(strcmp(signature,"dX")==0){
-        return DurangoSignature::DX;
-    }
-    if(strcmp(signature,"pX")==0){
-        return DurangoSignature::PX;
-    }
-    if(strcmp(signature,"dA")==0){
-        return DurangoSignature::DA;
-    }
-    if(strcmp(signature,"dL")==0){
-        return DurangoSignature::DL;
-    }
-    if(strcmp(signature,"dR")==0){
-        return DurangoSignature::DR;
-    }
-    if(strcmp(signature,"dS")==0){
-        return DurangoSignature::DS;
-    }
-    if(strcmp(signature,"dr")==0){
-        return DurangoSignature::Dr;
-    }
-    if(strcmp(signature,"ds")==0){
-        return DurangoSignature::Ds;
+    for(int i=0;i<9;i++){
+        if(strcmp(signature,signatureStrValues[i])==0){
+            return strSignaturesValues[i];
+        }
     }
     return DurangoSignature::INVALID;
 }
@@ -147,7 +153,7 @@ char * DurangoHeader::generateHeader(){
     header[MAGIC_2]=13;
     header[MAGIC_3]=0;
     //Signature
-    //TODO: Write Signature
+    memcpy(header+SIGNATURE_POS,signatureStrValues[this->headerInformation.signature],2);
     //Name
     src=0;
     dest=ROM_NAME_POS;
