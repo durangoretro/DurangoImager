@@ -52,24 +52,21 @@ void DurangoImagerController::setEmptySpaceSize(long emptySpaceSize){
 emptySpaceStruct DurangoImagerController::createEmptySpace(size_t emptySpaceSize){
     fprintf(stderr,"Creating Empty Space...Size: %lu\n",emptySpaceSize);
     emptySpaceStruct space;
+
+    durangoHeaderInfo headerInfo;
+    strncpy(headerInfo.filename,"FreeSpace",9);
+    headerInfo.signature=DurangoSignature::DL;
+    DurangoHeader header(headerInfo);
     char* emptySpaceContent=new char[emptySpaceSize];
-    char header[256];
-    //fill header
-    std::fill_n(header,256,0x00);
+    //Generate Content
+    char * headerContent = header.generateHeader();
+    //TODO: Implement Signature Converter
+    headerContent[SIGNATURE_POS]='d';
+    headerContent[SIGNATURE_POS+1]='L';
     //fill content
     std::fill_n(emptySpaceContent,emptySpaceSize,0xFF);
-    //set as empty space signature
-    header[1]='d';
-    header[2]='L';
-    header[7]=13;
-    // add size to header
-    //TODO Review how to store
-    header[252]=emptySpaceSize&0xFF;
-    header[253]=(emptySpaceSize>>8)&0xFF;
-    header[254]=(emptySpaceSize>>16);
-
-    //copy header in content
-    memcpy(emptySpaceContent,header,256);
+    //Copy Header
+    memcpy(emptySpaceContent,headerContent,HEADER_SIZE);
     space.emptySpaceContent=emptySpaceContent;
     space.emptySpaceSize=emptySpaceSize;
     return space;

@@ -2,6 +2,39 @@
 #define DURANGOHEADER_H
 #include <string>
 
+#define HEADER_SIZE 256
+
+#define SIGNATURE_POS 1
+
+#define ROM_NAME_POS 8
+
+#define USER_FIELD1_POS 230
+
+#define USER_FIELD_LEGNTH 8
+
+#define USER_FIELD2_POS 238
+
+#define VERSION_POS 246
+
+#define DATE_POS 250
+
+#define TIME_POS 248
+
+#define SIZE_POS 252
+
+#define MAGIC_1 0
+
+#define MAGIC_2 7
+
+#define MAGIC_3 255
+
+typedef u_int8_t byte;
+typedef u_int16_t word;
+typedef u_int32_t dword;
+
+
+
+
 
 /*
  * SPDX-License-Identifier: LGPL v3.0
@@ -48,6 +81,8 @@ enum DurangoSignature{
     INVALID
 };
 
+
+
 /**
  * Durango Header Struct
  */
@@ -59,7 +94,7 @@ typedef struct{
     /**
      * @brief filename ROM internal FileName
      */
-    char    filename[30];
+    char    filename[220];
     /**
      * @brief comment ROM Comment
      */
@@ -75,15 +110,43 @@ typedef struct{
     /**
      * @brief version ROM Version in Little Endian Format
      */
-    short     version;
+    byte     version;
     /**
-     * @brief date modification date in FAT format
+     * @brief revision revision Number
      */
-    short  date;
+    byte    revision;
     /**
-     * @brief time modification time in FAT format
+     * @brief build Build Number
      */
-    short  time;
+    byte build;
+    /**
+     * @brief day modification day in FAT format
+     */
+    byte  day;
+    /**
+     * @brief month modification month in FAT format
+     */
+    byte month;
+    /**
+     * @brief year modification year in FAT format
+     */
+    byte year;
+    /**
+     * @brief hour modification hour in FAT format
+     */
+    byte hour;
+    /**
+     * @brief minute modification minute in FAT format
+     */
+    byte minute;
+    /**
+     * @brief seconds modification seconds in FAT format
+     */
+    byte seconds;
+    /**
+     * @brief size File Size
+     */
+    u_int32_t size;
 }durangoHeaderInfo;
 /**
  * @brief The DurangoHeader class Stores the Durango ROM Header Information.
@@ -119,11 +182,15 @@ public:
      */
     static DurangoHeader * readDurangoHeader(char* headerinfo);
 
+    char * generateHeader();
+
 private:
     /**
      * @brief headerInformation Header Information
      */
     durangoHeaderInfo headerInformation;
+
+
 };
 
 #endif // DURANGOHEADER_H
